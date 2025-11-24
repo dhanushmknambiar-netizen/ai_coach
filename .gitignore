@@ -1,0 +1,32 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local data / memory / secrets
+memory_store.json
+*.env
+.env
+.env.*
+*.log
+
+# Built files
+dist/
+build/
+*.egg-info/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Images/screenshots that you don't want (optional)
+screenshots/
