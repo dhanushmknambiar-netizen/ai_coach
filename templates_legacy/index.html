@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Study Coach</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">SC</div>
+                <h1>StudyCoachAI</h1>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="active" onclick="showSection('home')">Home</li>
+                <li onclick="showSection('plan')">Study Plan</li>
+                <li onclick="showSection('progress')">Progress</li>
+            </ul>
+
+            <div class="status-card">
+                <h3>Session Status</h3>
+                <p id="status-text">Not Started</p>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="overall-progress" style="width: 0%"></div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Home Section -->
+            <section id="home-section" class="active-section fade-in">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h2>Master Your Subjects with AI</h2>
+                        <p>Unlock your potential with personalized study plans, intelligent tutoring, and adaptive quizzes.</p>
+                        <button class="btn-primary" onclick="startSession()">Start New Session</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plan Section -->
+            <section id="plan-section" class="hidden-section fade-in">
+                <header class="section-header">
+                    <h2>Your Study Path</h2>
+                    <p>Follow the plan below to master your topics.</p>
+                </header>
+                
+                <div class="plan-container" id="plan-list">
+                    <!-- Topics injected here -->
+                </div>
+
+                <div id="learning-area" class="hidden">
+                    <div class="glass-card full-width">
+                        <div class="card-header">
+                            <h3 id="current-topic-title">Current Topic</h3>
+                            <div class="topic-actions">
+                                <button class="btn-secondary" onclick="teachCurrentTopic()">Explain This</button>
+                                <button class="btn-primary" onclick="startQuiz()">Take Quiz</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="explanation-content" class="content-box">
+                                <p class="placeholder-text">Select an action to begin learning...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Modal / Area -->
+                <div id="quiz-area" class="hidden">
+                    <div class="glass-card quiz-card">
+                        <h3>Quick Quiz</h3>
+                        <div id="quiz-questions">
+                            <!-- Questions go here -->
+                        </div>
+                        <button class="btn-primary" onclick="submitQuiz()">Submit Answers</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progress-section" class="hidden-section fade-in">
+                 <header class="section-header">
+                    <h2>Your Performance</h2>
+                </header>
+                <div class="charts-container">
+                    <div class="glass-card chart-card">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                    <div class="glass-card stats-card">
+                        <h3>Summary</h3>
+                        <div id="stats-content">
+                            <p>No data yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-area"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
